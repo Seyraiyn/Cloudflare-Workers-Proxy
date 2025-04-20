@@ -1,86 +1,87 @@
-# Cloudflare Workers Proxy
+# Cloudflare Workers Proxy 
+(google translated)
 
-这是一个基于 Cloudflare Workers 的简单反向代理脚本，用于将客户端的请求转发到目标地址，并将目标地址的响应返回给客户端。在使用本脚本之前，请务必详细阅读以下安全注意事项和免责声明，以确保使用脚本时的安全和法律合规性。
+This is a simple reverse agent script based on Cloudflare Workers, which is used to forward the request of the client to the target address and return the response of the target address to the client. Before using this script, be sure to read the following safety precautions and disclaimers in detail to ensure safety and legal compliance when using the script. 
 
-- 群聊: [HeroCore](https://t.me/HeroCore)
-- 频道: [HeroMsg](https://t.me/HeroMsg)
+-Group chat: [HeroCore](https://t.me/HeroCore) 
+-Channel: [HeroMsg](https://t.me/HeroMsg) 
 
-![image](https://github.com/user-attachments/assets/72b35862-16cc-4224-89e1-ad0419a7ac4e)
-
-
-## 简介
-
-这个 Cloudflare Workers 脚本充当了一个反向代理，它的主要功能是接收客户端的请求，并将请求代理到目标地址，然后将目标地址的响应返回给客户端。具体功能包括：
-
-- 代理客户端请求到目标地址。
-- 修改响应中的相对路径为绝对路径，以确保资源的正确加载。
-- 处理重定向并进行适当的修改，以保持资源路径的正确性。
-- 添加 CORS 头部，以允许跨域访问。
-
-## 如何部署
-
-以下是部署 Cloudflare Workers 反向代理脚本的详细步骤：
-
-1. 注册 Cloudflare 账户：如果您尚未拥有 Cloudflare 账户，请在 [Cloudflare 官方网站](https://www.cloudflare.com/) 上注册一个账户。
-
-2. 创建 Workers 脚本：登录到 Cloudflare 账户后，进入 "Workers" 部分，创建一个新的 Workers 脚本。
-
-3. 复制[worker.js](worker.js)：将提供的反向代理脚本粘贴到 Workers 编辑器中。
-
-4. 保存并部署：保存脚本后，点击 "Deploy" 按钮，以部署您的 Workers 脚本。
-
-5. 配置域名：在 Cloudflare 中，将您的域名与部署的 Workers 脚本关联。确保将流量路由到您的 Workers 脚本。
-
-6. 测试：访问您的域名或者 Cloudflare Workers URL 会看到一个输入框，您可以在其中输入要代理的目标网站的 URL，然后点击 "进入代理" 按钮进行访问。
-
-## 使用方法
-
-要使用此反向代理访问其他网站，请按照以下步骤操作：
-
-1. 发出请求：只需向您的 Cloudflare Workers URL 发出请求，将请求发送到目标网站。
-
-   示例请求：`https://your-worker-url.com/https://example.com/`
-
-   将 `your-worker-url.com` 替换为您的 Cloudflare Workers URL，`example.com` 替换为您要代理的目标网站的地址。
-
-2. 处理重定向
-
-   反向代理脚本能够处理重定向并适当修改资源路径，以确保正确性。
-
-3. 允许跨域请求
-
-   反向代理添加了 CORS（跨源资源共享）头部，以允许跨域请求。这意味着您可以在前端 JavaScript 代码中从不同域（不同域名）发起请求，而不会受到浏览器的跨域安全限制。
-
-4. 用户友好界面
-
-   如果您未提供目标网站的 URL，此反向代理还提供了一个用户友好的界面。用户可以在此界面中输入目标网站的 URL，然后点击 "进入代理" 按钮，以便快速代理访问目标网站。
-
-## 注意事项
-
-- 请确保部署的 Workers 脚本在部署时是有效的，并且有足够的资源来处理请求。
-
-- 请注意不要滥用该服务，确保只将它用于合法和合适的用途。
-
-## 免责声明
-
-- **责任限制**：作者不对脚本可能导致的任何安全问题、数据损失、服务中断、法律纠纷或其他损害负责。使用此脚本需自行承担风险。
-
-- **不当使用**：使用者需了解，本脚本可能被用于非法活动或未经授权的访问。作者强烈反对和谴责任何不当使用脚本的行为，并鼓励合法合规的使用。
-
-- **合法性**：请确保遵守所有适用的法律、法规和政策，包括但不限于互联网使用政策、隐私法规和知识产权法。确保您拥有对目标地址的合法权限。
-
-- **自担风险**：使用此脚本需自行承担风险。作者和 Cloudflare 不对脚本的滥用、不当使用或导致的任何损害承担责任。
-
-**此免责声明针对非中国大陆地区用户，如在中国大陆地区使用，需遵守相关地区法律法规，且由使用者自行承担相应风险与责任。**
+![ image](https://github.com/user-attachments/assets/72b35862-16cc-4224-89e1-ad0419a7ac4e) 
 
 
-## 资源
+## Introduction 
 
-- [Cloudflare Workers 文档](https://developers.cloudflare.com/workers)
-- [Cloudflare Workers 设置](https://developers.cloudflare.com/workers/platform/settings)
+This Cloudflare Workers script acts as a reverse agent. Its main function is to receive the request from the client, and to represent the request to the target address, and then return the response from the target address to the client. Specific functions include: 
 
-## 许可证
+-Agent client requests to the target address. 
+-Modify that the relative path in response is an absolute path to ensure the correct loading of resources. 
+-Handle reorientation and make appropriate modifications to maintain the correctness of the resource path. 
+-Add CORS head to allow cross-domain access. 
 
-本项目采用 MIT 许可证。详细信息请参阅 [LICENSE](LICENSE) 文件。
+## How to deploy 
 
-感谢您的使用！如果您对这个项目有任何改进或建议，也欢迎贡献代码或提出问题。
+The following are the detailed steps for deploying Cloudflare Workers reverse proxy scripts: 
+
+1.  Registration Cloudflare Account: If you do not yet have a Cloudflare account, please register an account on the official website of [Cloudflare ](https://www.cloudflare.com/). 
+
+2.  Create Workers scripts: After logging into the Cloudflare account, enter the "Workers" section and create a new Workers script. 
+
+3.  Copy [worker.js](worker.js): paste the provided reverse proxy script into the Workers editor. 
+
+4.  Save and deploy: After saving the script, click the "Deep" button to deploy your Workers script. 
+
+5.  Configuration domain name: In Cloudflare, associate your domain name with the deployed Workers script. Make sure to pass the traffic to your Workers script. 
+
+6.  Test: Visit your domain name or Cloudflare Workers URL will see an input box in which you can enter the URL of the target website to be represented, and then click the "Enter Agent" button for access. 
+
+## Method of use 
+
+To use this reverse agent to visit other websites, please follow the following steps: 
+
+1.  Send a request: Just send a request to your Cloudflare Workers URL and send the request to the target website. 
+
+   Example request: `https://your-worker-url.com/https://example.com/` 
+
+   Replace `your-worker-url.com` with your Cloudflare Workers URL, `example.com` with the address of the target website you want to represent. 
+
+2.  Process reorientation 
+
+   Reverse proxy scripts can handle reorientation and modify resource paths appropriately to ensure accuracy. 
+
+3.  Allow cross-domain requests 
+
+   The reverse agent added CORS (cross-source resource sharing) head to allow cross-domain requests. This means that you can initiate a request from a different domain (different domain name) in the front JavaScript code without being subject to cross-domain security restrictions on the browser. 
+
+4.  User-friendly interface 
+
+   If you do not provide URL for the target website, this reverse agent also provides a user-friendly interface. Users can enter the URL of the target website in this interface, and then click the "entry agent" button to quickly access the target website. 
+
+## Precautions 
+
+-Please ensure that the deployed Workers scripts are valid at the time of deployment and have sufficient resources to process the request. 
+
+-Please be careful not to abuse the service to ensure that it is only used for legal and suitable purposes. 
+
+## Disclaimer 
+
+-**Liability limitation**: The author is not responsible for any safety issues, data losses, service interruptions, legal disputes or other damages that may result from the script. The use of this script requires its own risk. 
+
+-** Improper use**: Users need to understand that this script may be used for illegal activities or unauthorized access. The author strongly opposes and condemns any improper use of scripts and encourages the use of legal compliance. 
+
+-**Legality**: Please ensure compliance with all applicable laws, regulations and policies, including but not limited to Internet use policies, privacy regulations and intellectual property laws. Make sure you have legal authority over the target address. 
+
+-**Self-risk**: The use of this script requires self-risk. The author and Cloudflare are not liable for the misuse, improper use or any damage caused by the script. 
+
+**This disclaimer is aimed at non-mainland Chinese users. If used in mainland China, it is necessary to abide by relevant regional laws and regulations, and the users shall bear the corresponding risks and responsibilities themselves. ** 
+
+
+## Resources 
+
+-[Cloudflare Workers Document ](https://developers.cloudflare.com/workers) 
+-[Cloudflare Workers Set ](https://developers.cloudflare.com/workers/platform/settings) 
+
+## License 
+
+This project uses MIT licenses. For details, please refer to the [LICENSE](LICENSE) file. 
+
+Thank you for your use! If you have any improvements or suggestions for this project, you are also welcome to contribute codes or ask questions. 
